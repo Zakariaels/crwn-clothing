@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
@@ -29,5 +30,10 @@ const Header = ( { currentUser } ) => (
     </div>
 )
 
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
 
-export default Header;
+//connect: connecte the Header component to the store
+//we get the prop we need, which in this case, the currentUser, using mapStateToProps function we've created
+export default connect(mapStateToProps)(Header);

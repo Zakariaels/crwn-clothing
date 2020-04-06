@@ -1,7 +1,11 @@
+// Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
 
+// Adding Firebase products we will use
+import 'firebase/auth';
+import 'firebase/firestore';
+
+// Firebase project configuration
 const config = {
     apiKey: "AIzaSyDASCgNZ32U9Lv1ds1wH-MrDtEmM37GlcY",
     authDomain: "crwn-db-6da77.firebaseapp.com",
@@ -16,7 +20,6 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
   if (!userAuth) return;
   const userRef = firestore.doc(  `users/${userAuth.uid}`  );
   const snapShot = await userRef.get();
-  // console.log( snapShot )
   if(!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
@@ -34,6 +37,7 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
 return userRef;
 }
 
+// Initializing Firebase
 firebase.initializeApp(config);  
 
 export const auth = firebase.auth();
