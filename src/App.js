@@ -32,10 +32,9 @@ class App extends React.Component {
           });
       } else {
         setCurrentUser( userAuth );
-      }
+      } 
     });
   };
-
   //component will unmout method
   componentWillUnmount() {
     this.unsubscribeFromAuth();
@@ -51,9 +50,7 @@ class App extends React.Component {
       </Switch>
     </div>
   );
-}
-}
-
+}}
 //A store holds the whole state tree of your application. 
 //The only way to change the state inside it is to dispatch an action on it.
 const mapDispatchToProps = dispatch => ({
