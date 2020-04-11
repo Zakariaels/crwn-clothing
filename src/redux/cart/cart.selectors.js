@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { createStore } from 'redux';
 
 //input selector
 //get the whole state and return a slice of iy (one layer or two!)
@@ -11,7 +10,18 @@ export const selectCartItems = createSelector(
     (cart) => cart.cartItems
 );
 
+export const selectCartHidden = createSelector(
+    [selectCart],
+    cart => cart.hidden
+);
+
 export const selectCartItemsCount = createSelector(
     [ selectCartItems ],
     cartItems => cartItems.reduce((accumalatedQuantity, cartItem) => accumalatedQuantity + cartItem.quantity, 0)
+);
+
+
+export const selectCartTotal = createSelector(
+    [ selectCartItems ],
+    cartItems => cartItems.reduce((accumalatedPrice, cartItem) => accumalatedPrice + cartItem.price * cartItem.quantity, 0)
 );
