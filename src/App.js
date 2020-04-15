@@ -1,19 +1,21 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect  } from 'react-redux';
+//*****************************************************************************************
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { HomePage } from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPage from './pages/checkout/checkout.component';
-
 //firebase
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions'; 
 import { createStructuredSelector } from 'reselect';
 import './App.css';
 // import SignIn from './components/sign-in/sign-in.component';
+
+//*****************************************************************************************
 
 // App class definition
 class App extends React.Component {
@@ -24,6 +26,7 @@ class App extends React.Component {
     this.unsubscribeFromAuth = auth.onAuthStateChanged( async userAuth => {
       if (userAuth) {
           const userRef = await createUserProfileDocument(userAuth);
+          //we add a lister on the userRef. if there is any update, we get back the updated object and store it in redux
           userRef.onSnapshot(snapShot => {
               setCurrentUser( { 
                         id: snapShot.id,
@@ -35,7 +38,8 @@ class App extends React.Component {
       } 
     });
   };
-  //component will unmout method
+  
+
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
@@ -60,6 +64,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);
