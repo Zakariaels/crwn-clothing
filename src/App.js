@@ -12,7 +12,8 @@ import CheckoutPage from './pages/checkout/checkout.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions'; 
 import { createStructuredSelector } from 'reselect';
-import './App.css';
+
+import {GlobalStyle} from './global.styles';
 // import SignIn from './components/sign-in/sign-in.component';
 
 //*****************************************************************************************
@@ -47,6 +48,7 @@ class App extends React.Component {
   render() {
   return (
     <div>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
