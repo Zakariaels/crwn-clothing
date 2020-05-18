@@ -6,7 +6,8 @@ export const SignInContainer = styled.div`
   flex-direction: column;
 
   @media screen and (max-width: 800px) {
-    padding: 20px 0 60px 0;
+    width: 99%;
+    padding: 20px 0;
   }
 `;
 
@@ -17,4 +18,10 @@ export const SignInTitle = styled.h2`
 export const ButtonsBarContainer = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 372px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 20px 0;
+  }
 `;

@@ -7,7 +7,11 @@ export const SignInAndSignUpContainer = styled.div`
   margin: 30px auto;
 
   @media screen and (max-width: 800px) {
+    width: unset;
+    /* display: grid;
+    grid-template-columns: 1fr; */
     flex-direction: column;
     align-content: space-between;
   }
+
 `;
